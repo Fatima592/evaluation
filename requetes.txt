@@ -1,0 +1,72 @@
+# Accéder à la base de donnée
+#################################
+sqlite3 db.sqlite
+
+
+
+# Options d'affichage 
+#################################
+sqlite> .mode column
+sqlite> .headers on
+
+
+
+# Creer une table "apprenants"
+#################################
+sqlite> CREATE TABLE "apprenants"(
+   ...> id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+   ...> name TEXT);
+
+
+
+# Creer une table "referentiels"
+#################################
+sqlite> CREATE TABLE "referentiels"(
+   ...> id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+   ...> competence TEXT);
+
+
+
+# Creer une table de jointure "referentiels_apprenants"
+#################################
+sqlite> CREATE TABLE "referentiels_apprenants"(
+   ...> id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+   ...> competence_id INTEGER,
+   ...> apprenant_id INTEGER,
+   ...> status TEXT,
+   ...> FOREIGN KEY (competence_id)
+   ...> REFERENCES referentiels(id),
+   ...> FOREIGN KEY (apprenant_id)
+   ...> REFERENCES apprenants(id)
+   ...> );
+
+
+
+# Insérer des lignes dans la table "apprenants"
+#################################
+sqlite> INSERT INTO apprenants(name)
+   ...> VALUES ("Fatima"),
+   ...> ("Deborah"),
+   ...> ("Steeven"),
+   ...> ("Camille"),
+   ...> ("Maxim"),
+   ...> ("Lucas"),
+   ...> ("Chloe"),
+   ...> ("Pierre"),
+   ...> ("Isa"),
+   ...> ("Julie"),
+   ...> ("Voja"),
+   ...> ("Jojo"),
+   ...> ("Clement");
+
+
+
+# Insérer des lignes dans la table "referentiels"
+#################################
+sqlite> INSERT INTO referentiels(name)
+   ...> VALUES ()
+
+
+# COMMANDE QUI MODIFIE LE STATUS
+
+UPDATE referentiels_apprenants SET status = "vert" WHERE id = {Valeur}
